@@ -5,6 +5,7 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
+// require('services/application')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win: BrowserWindow | null
@@ -22,8 +23,9 @@ function createWindow() {
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-      nodeIntegration: (process.env
-          .ELECTRON_NODE_INTEGRATION as unknown) as boolean
+      nodeIntegration: true
+      // (process.env
+      //     .ELECTRON_NODE_INTEGRATION as unknown) as boolean
     }
   })
 
@@ -88,3 +90,11 @@ if (isDevelopment) {
     })
   }
 }
+
+import { ipcMain, dialog } from 'electron'
+import PodcastStation from './models/podcast_station'
+
+ipcMain.handle('testDialog', async (event, data) => {
+  let podcast_station: PodcastStation = new PodcastStation()
+dialog.showMessageBox({title: podcast_station.name, message: podcast_station.name})
+})

@@ -9,10 +9,14 @@
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 
+
+// import { ipcRenderer } from 'electron'
 export default {
   name: 'Home',
   components: {
     HelloWorld
   }
 }
+const {ipcRenderer} = window.require('electron')
+ipcRenderer.invoke('testDialog', null)
 </script>
