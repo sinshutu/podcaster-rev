@@ -68,6 +68,12 @@
           <v-card-text
             >ポッドキャストのRSS URLを直接登録することができます
             <v-text-field
+              v-model="podcastName"
+              label="ポッドキャスト名"
+              outlined
+              dense
+            ></v-text-field>
+            <v-text-field
               v-model="rssUrl"
               label="RSS URL"
               outlined
@@ -154,11 +160,15 @@ export default Vue.extend({
 
   data: () => ({
     dialog: false,
-    rssUrl: 'aa'
+    rssUrl: '',
+    podcastName: ''
   }),
   methods: {
     addRssUrl() {
-      ipcRenderer.invoke('testDialog', this.rssUrl);
+      ipcRenderer.invoke('testDialog', {
+        podcastName: this.podcastName,
+        rssUrl: this.rssUrl
+      });
     }
   }
 });

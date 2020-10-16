@@ -1,9 +1,9 @@
-import ElectronStore from "electron-store"
+import ElectronStore from 'electron-store';
 
 export default class BaseModel {
-  store: ElectronStore
+  store: ElectronStore;
 
   constructor() {
-    this.store = new ElectronStore()
+    this.store = new ElectronStore();
   }
 }

@@ -1,11 +1,13 @@
+import PodcastStationManager from '@/models/podcast_station';
 import { dialog, ipcMain } from 'electron';
-import PodcastStation from '../models/podcast_station';
 
 ipcMain.handle('testDialog', async (event, data) => {
-  const podcastStation: PodcastStation = new PodcastStation();
-  console.log(data);
+  const podcastStation: PodcastStationManager = new PodcastStationManager();
+  podcastStation.setPodcastFromUrl(data.podcastName, data.rssUrl);
+  console.log(podcastStation.geAll());
+
   dialog.showMessageBox({
-    title: podcastStation.name,
-    message: data
+    title: 'podcastStation.name',
+    message: 'data'
   });
 });
