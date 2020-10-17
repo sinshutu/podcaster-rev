@@ -1,4 +1,4 @@
-import BaseModel from './base';
+import BaseModel from './BaseModel';
 
 export default class PodcastStationManager extends BaseModel {
   constructor() {
