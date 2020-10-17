@@ -13,7 +13,8 @@ export default class PodcastStationManager extends BaseModel {
     console.log('aa');
     let returnArray = [];
     try {
-      const jsonData = JSON.parse(this.store.get('podcastList'));
+      const jsonString = this.store.get('podcastList') as string;
+      const jsonData = JSON.parse(jsonString);
 
       console.log(jsonData);
       for (const idx in jsonData) {
